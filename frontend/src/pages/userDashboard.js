@@ -5,6 +5,9 @@ import axios from "axios";
 
 import NavbarTop from "../components/NavbarTop";
 import NavbarBottom from "../components/NavbarBottom";
+import ImageSlider from "../components/ImageSlider";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "../assets/Colors";
 
 const UserDashboard = () => {
   const navigate = useNavigate();
@@ -44,10 +47,13 @@ const UserDashboard = () => {
   };
 
   return (
-    <div className="flex flex-col p-5 bg-[#1e1e1e]">
-      <NavbarTop />
-      <NavbarBottom />
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="flex flex-col bg-[#1e1e1e]">
+        <NavbarTop />
+        <NavbarBottom />
+        <ImageSlider />
+      </div>
+    </ThemeProvider>
   );
 };
 

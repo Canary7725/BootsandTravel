@@ -64,7 +64,6 @@ const loginUser = asyncHandler(async (req, res) => {
       return res.status(400).json({ message: "Incorrect Password" });
     }
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 });

@@ -8,6 +8,19 @@ import Toast from "./components/Toast";
 import { useCookies } from "react-cookie";
 import PrimarySearchAppBar from "./pages/test";
 
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#f2f3d9",
+    },
+    secondary: {
+      main: "#1e1e1e",
+    },
+  },
+});
+
 export default function App() {
   const cookies = useCookies([]);
   return (
