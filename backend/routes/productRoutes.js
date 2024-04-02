@@ -1,4 +1,5 @@
 const express = require("express");
+const uploadProduct = require("../middlewares/uploadProductImage");
 
 const {
   createProduct,
@@ -9,7 +10,11 @@ const {
 } = require("../controllers/productController");
 const router = express.Router();
 
-router.post("/createProduct", createProduct);
+router.post(
+  "/createProduct",
+  uploadProduct.any("product_images"),
+  createProduct
+);
 router.get("/getProducts", getProducts);
 router.get("/getProduct/:id", getProduct);
 router.post("/updateProduct/:id", updateProduct);

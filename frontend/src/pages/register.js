@@ -62,33 +62,33 @@ const Register = () => {
               <input
                 type="text"
                 placeholder="Full Name"
-                className="w-full my-2 p-2 bg-secondary border-b border-[#f2f3d9] outline-none focus:outline-none"
+                className="w-full my-2 p-2 bg-primary border-b border-[#f2f3d9] outline-none focus:outline-none"
                 onChange={(e) => setName(e.target.value)}
               />
               <input
                 type="email"
                 placeholder="Email"
-                className="w-full my-2 p-2 bg-secondary border-b border-[#f2f3d9] outline-none focus:outline-none"
+                className="w-full my-2 p-2 bg-primary border-b border-secondary outline-none focus:outline-none"
                 onChange={(e) => setEmail(e.target.value)}
               />
               <div className="flex flex-row justify-between">
                 <input
                   type="password"
                   placeholder="Password"
-                  className="w-[45%] my-2 p-2 bg-secondary border-b border-[#f2f3d9] outline-none focus:outline-none"
+                  className="w-[45%] my-2 p-2 bg-primary border-b border-secondary outline-none focus:outline-none"
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <input
                   type="password"
                   placeholder="Confirm Password"
-                  className="w-[45%] my-2 p-2  bg-secondary border-b border-[#f2f3d9] outline-none focus:outline-none"
+                  className="w-[45%] my-2 p-2  bg-primary border-b border-secondary outline-none focus:outline-none"
                   onChange={(e) => setCPassword(e.target.value)}
                 />
               </div>
               <input
                 type="text"
                 placeholder="Phone"
-                className="w-full my-2 p-2 bg-secondary border-b border-[#f2f3d9] outline-none focus:outline-none"
+                className="w-full my-2 p-2 bg-primary border-b border-secondary outline-none focus:outline-none"
                 onChange={(e) => setPhone(e.target.value)}
               />
             </div>

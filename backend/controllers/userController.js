@@ -2,17 +2,31 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const { createSecretToken } = require("../util/secretToken");
+const fs = require("fs");
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, cpassword, phone } = req.body;
+  const { name, email, password, phone } = req.body;
+  let imageFileName;
+
+  if (req.file) {
+    imageFileName = req.file.filename;
+  }
 
   //check existing email
   const existingUser = await User.findOne({ email });
   if (existingUser) {
-    res.status(400).json({ message: "Email already exists" });
+    // If there's an uploaded image, delete it
+    if (imageFileName) {
+      fs.unlinkSync(`images/user/${imageFileName}`);
+    }
+    return res.status(400).json({ message: "Email already exists" });
   }
-  if (password !== cpassword) {
-    res.status(400).json({ message: "Password Mismatch" });
+  if (password !== req.body.cpassword) {
+    // If there's an uploaded image, delete it
+    if (imageFileName) {
+      fs.unlinkSync(`images/user/${imageFileName}`);
+    }
+    return res.status(400).json({ message: "Password Mismatch" });
   }
 
   //encrypt password
@@ -25,12 +39,19 @@ const registerUser = asyncHandler(async (req, res) => {
       password: hashedPassword,
       phone,
       is_admin: false,
+      profile_image: imageFileName, // Assign image filename directly
     });
+
     res.status(200).json({
+      user,
       message: "SignIn Successful",
       success: true,
     });
   } catch (err) {
+    // If there's an uploaded image, delete it
+    if (imageFileName) {
+      fs.unlinkSync(`images/user/${imageFileName}`);
+    }
     res.status(400).json({ message: err.message });
   }
 });

@@ -21,6 +21,7 @@ app.get("/", (req, res) =>
   res.status(200).json({ message: "Welcome to the API!" })
 );
 app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/products", require("./routes/productRoutes"));
 
 app.listen(port, (error) => {
   if (!error) {

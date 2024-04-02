@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import backup from "../images/login-image.jpg";
+import backup from "../../images/login-image.jpg";
 
 const ImageSlider = () => {
   const settings = {
@@ -15,7 +15,7 @@ const ImageSlider = () => {
     autoplaySpeed: 5000,
   };
   return (
-    <div className="mt-8 h-1/2 w-1/2 mx-auto">
+    <div className="mt-8 h-2/3 w-full mx-auto px-6">
       <Slider {...settings}>
         <div>
           <h3>

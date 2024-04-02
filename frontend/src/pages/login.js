@@ -58,13 +58,13 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="Email"
-                className="w-full my-2 p-2 bg-secondary border-b border-primary outline-none focus:outline-none"
+                className="w-full my-2 p-2 bg-primary border-b border-secondary outline-none focus:outline-none"
                 onChange={(e) => setEmail(e.target.value)}
               />
               <input
                 type="password"
                 placeholder="Password"
-                className="w-full my-2 p-2 bg-secondary border-b border-primary outline-none focus:outline-none"
+                className="w-full my-2 p-2 bg-primary border-b border-secondary outline-none focus:outline-none"
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
@@ -83,7 +83,7 @@ const Login = () => {
             <div className="w-full flex flex-col my-4">
               <button
                 type="submit"
-                className="w-full my-2 font-semibold bg-[#f2f3d9] text-[#1e1e1e] rounded-md p-3 text-center flex items-center justify-center"
+                className="w-full my-2 font-semibold bg-secondary  text-[#1e1e1e] rounded-md p-3 text-center flex items-center justify-center"
               >
                 Login
               </button>

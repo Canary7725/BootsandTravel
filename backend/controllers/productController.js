@@ -1,33 +1,54 @@
 const asyncHandler = require("express-async-handler");
 const Product = require("../models/productModel");
 const { default: mongoose } = require("mongoose");
+const fs = require("fs");
 
 const createProduct = asyncHandler(async (req, res) => {
-  const { name, description, price, quantity_available, categories, images } =
-    req.body;
+  const { name, description, price, quantity_available, categories } = req.body;
 
-  const existingProduct = await Product.findOne({ name });
-  if (existingProduct) {
-    res.status(400).json({ message: "Product already exists" });
+  // Check if files are uploaded
+  if (!req.files || req.files.length === 0) {
+    return res.status(400).json({ message: "No files uploaded" });
   }
 
+  // Extract filenames from uploaded files
+  const images = req.files.map((file) => file.filename);
+
   try {
+    // Check if product with the same name already exists
+    const existingProduct = await Product.findOne({ name });
+    if (existingProduct) {
+      // Delete uploaded images if product already exists
+      images.forEach((filename) => {
+        fs.unlinkSync(`images/product/${filename}`);
+      });
+      return res.status(400).json({ message: "Product already exists" });
+    }
+
+    // Create new product with uploaded images
     const product = await Product.create({
       name,
       description,
       price,
       quantity_available,
       categories,
-      images,
+      product_images: images,
     });
+
     res.status(200).json({
       message: "Product added successfully",
+      product,
       success: true,
     });
-  } catch (e) {
+  } catch (error) {
+    // Delete uploaded images if error occurs
+    images.forEach((filename) => {
+      fs.unlinkSync(`images/product/${filename}`);
+    });
     res.status(400).json({
-      message: e.message,
+      message: "Error adding product",
       success: false,
+      error: error.message,
     });
   }
 });
