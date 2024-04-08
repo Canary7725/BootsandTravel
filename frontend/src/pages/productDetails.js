@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Box, Button } from "@mui/material";
@@ -12,26 +12,15 @@ import NavbarBottom from "../components/Dashboard/NavbarBottom";
 import { theme } from "../assets/Colors";
 import Footer from "../components/Dashboard/Footer";
 import MainButton from "../components/Button";
+import BreadCrumb from "../components/Breadcrumb";
+import { ProductsContext } from "../Context/productsContext";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState(null);
-
-  useEffect(() => {
-    async function fetchProduct() {
-      try {
-        const response = await axios.get(
-          `http://localhost:4000/api/products/getProduct/${id}`
-        );
-        setProduct(response.data);
-      } catch (error) {
-        console.error("Error fetching product details:", error);
-      }
-    }
-
-    fetchProduct();
-  }, [id]);
-
+  const products = useContext(ProductsContext);
+  const product = products.find(
+    (product) => parseInt(product._id) === parseInt(id)
+  );
   if (!product) {
     return <div>Loading...</div>;
   }
@@ -52,6 +41,7 @@ const ProductDetails = () => {
     >
       <NavbarTop />
       <NavbarBottom />
+      {/* <BreadCrumb product={product} /> */}
       <Box
         sx={{
           display: "flex",
