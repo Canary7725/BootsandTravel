@@ -14,7 +14,7 @@ const Featured = () => {
   return (
     <div>
       <Card sx={{ width: "45vw", my: 4, mx: 4, pb: 2, borderRadius: 3 }}>
-        <CardMedia sx={{ height: 480 }} image={image} title="green iguana" />
+        <CardMedia sx={{ height: 480 }} image={image} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             Lizard

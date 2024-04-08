@@ -10,10 +10,9 @@ export default function MainButton({ children }) {
       variant="contained"
       href="#s"
       sx={{
+        mt: 2,
         bgcolor: theme.palette.primary.main,
         color: theme.palette.secondary.main,
-        ml: 1,
-        mr: 4,
       }}
     >
       {children}
