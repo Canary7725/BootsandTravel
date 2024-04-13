@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import { theme } from "../../assets/Colors";
 import MainButton from "../Button";
 
-import image from "../../images/login-image.jpg";
+import image from "../../images/backup.png";
 
 const Featured = () => {
   return (
@@ -17,10 +17,10 @@ const Featured = () => {
         <CardMedia sx={{ height: 480 }} image={image} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Lizard
+            Featured Product Title
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles
+            Featured Product description
           </Typography>
         </CardContent>
         <CardActions>

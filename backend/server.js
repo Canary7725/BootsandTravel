@@ -24,6 +24,8 @@ app.get("/", (req, res) =>
 app.use("/images", express.static(path.join(__dirname, "images")));
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/products", require("./routes/productRoutes"));
+app.use("/api/cart", require("./routes/cartRoutes"));
+app.use("/api/order", require("./routes/orderRoutes"));
 
 app.listen(port, (error) => {
   if (!error) {

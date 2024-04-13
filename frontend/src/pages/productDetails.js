@@ -14,6 +14,7 @@ import Footer from "../components/Dashboard/Footer";
 import MainButton from "../components/Button";
 import BreadCrumb from "../components/Breadcrumb";
 import { ProductsContext } from "../Context/productsContext";
+import FaButton from "../components/FaButton";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -41,7 +42,7 @@ const ProductDetails = () => {
     >
       <NavbarTop />
       <NavbarBottom />
-      {/* <BreadCrumb product={product} /> */}
+      <BreadCrumb product={product} />
       <Box
         sx={{
           display: "flex",
@@ -96,7 +97,7 @@ const ProductDetails = () => {
         <Typography sx={{ typography: "h3" }}>Rs {product.price}</Typography>
         <MainButton>Add to Cart</MainButton>
       </Box>
-
+      <FaButton />
       <Footer />
     </Box>
   );

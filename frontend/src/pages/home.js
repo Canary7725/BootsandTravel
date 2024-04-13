@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import Typography from "@mui/material/Typography";
@@ -8,11 +8,20 @@ import ImageSlider from "../components/Dashboard/ImageSlider";
 import Featured from "../components/Dashboard/Featured";
 import BrandSlider from "../components/Dashboard/BrandSlider";
 import Footer from "../components/Dashboard/Footer";
+import { useAuth } from "../Context/AuthContext";
+import { Button } from "@mui/material";
+import FaButton from "../components/FaButton";
 
 const Home = () => {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
   const [name, setName] = useState("");
+  const { user } = useAuth();
+
+  useEffect(() => {
+    console.log(user);
+    setName(user ? user.name : ""); // Check if user is not null before accessing name
+  }, [user]);
 
   const Logout = () => {
     removeCookie("token");
@@ -37,6 +46,7 @@ const Home = () => {
       </div>
       <BrandSlider />
       <Footer />
+      <FaButton />
     </div>
   );
 };

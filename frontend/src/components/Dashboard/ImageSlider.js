@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import backup from "../../images/login-image.jpg";
+import backup from "../../images/backup.png";
 
 const ImageSlider = () => {
   const settings = {

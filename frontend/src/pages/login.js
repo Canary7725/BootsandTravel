@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import Toast from "../components/Toast";
+import { useAuth } from "../Context/AuthContext";
 
 const colors = {
   text: "#f2f3d9",
@@ -15,13 +16,12 @@ const colors = {
 };
 
 const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-
+  const { login } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleError = (err) => toast.error(err);
-  const handleSuccess = (msg) => toast.success(msg);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -31,8 +31,10 @@ const Login = () => {
         { email, password },
         { withCredentials: true }
       );
-      const { success, message } = data;
+      const { success, message, user } = data;
       if (success) {
+        login(user);
+        console.log(user);
         navigate("/");
       } else {
         handleError(message);

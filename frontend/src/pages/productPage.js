@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { Box } from "@mui/material";
 import Cards from "../components/Cards";
+import FaButton from "../components/FaButton";
 
 function ProductList(props) {
   const { category } = props;
@@ -16,8 +17,9 @@ function ProductList(props) {
   const filteredProducts =
     category === "all"
       ? products
-      : products.filter((product) => product.categories[0] === category);
-  console.log(filteredProducts);
+      : products.filter((product) =>
+          product.categories.some((cat) => cat === category)
+        );
 
   return (
     <Box sx={{ backgroundColor: theme.palette.secondary.main }}>
@@ -40,6 +42,7 @@ function ProductList(props) {
           ))}
         </Grid>
       </Box>
+      <FaButton />
     </Box>
   );
 }

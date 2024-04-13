@@ -10,8 +10,8 @@ function CreateProductForm() {
     description: "",
     price: "",
     quantity_available: "",
-    categories: "",
-    images: [], // Initialize images as an empty array
+    categories: [],
+    images: [],
   };
 
   const validationSchema = Yup.object().shape({
@@ -38,9 +38,10 @@ function CreateProductForm() {
     formData.append("description", values.description);
     formData.append("price", values.price);
     formData.append("quantity_available", values.quantity_available);
-    formData.append("categories", categoriesArray);
 
-    // Loop through each image file and append it to the FormData
+    categoriesArray.forEach((category, index) => {
+      formData.append(`categories[${index}]`, category);
+    });
     values.images.forEach((image, index) => {
       formData.append(`image_${index}`, image);
     });

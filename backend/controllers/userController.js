@@ -80,6 +80,7 @@ const loginUser = asyncHandler(async (req, res) => {
       return res.status(200).json({
         message: "Login Successful",
         success: true,
+        user: user,
       });
     } else {
       return res.status(400).json({ message: "Incorrect Password" });

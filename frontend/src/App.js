@@ -10,6 +10,7 @@ import ProductList from "./pages/productPage";
 import Cart from "./pages/cart";
 import AddProduct from "./pages/addProduct";
 import ProductDetails from "./pages/productDetails";
+import FaButton from "./components/FaButton";
 
 export default function App() {
   const cookies = useCookies([]);
@@ -27,7 +28,6 @@ export default function App() {
             }
           /> */}
             <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/add" element={<AddProduct />} />
             <Route path="/all" element={<ProductList category="all" />} />
