@@ -8,10 +8,11 @@ import Register from "./pages/register";
 import Home from "./pages/home";
 import ProductList from "./pages/productPage";
 import Cart from "./pages/cart";
-import AddProduct from "./pages/addProduct";
 import ProductDetails from "./pages/productDetails";
 import FaButton from "./components/FaButton";
 import Test from "./pages/test";
+import AdminHome from "./pages/Admin/adminHome";
+import ItemList from "./pages/Admin/itemList";
 
 export default function App() {
   const cookies = useCookies([]);
@@ -31,13 +32,15 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/test" element={<Test />} />
             <Route path="/product/:id" element={<ProductDetails />} />
-            <Route path="/add" element={<AddProduct />} />
             <Route path="/all" element={<ProductList category="all" />} />
             <Route path="/men" element={<ProductList category="men" />} />
             <Route path="/women" element={<ProductList category="women" />} />
             <Route path="/misc" element={<ProductList category="misc" />} />
 
             <Route path="/cart" element={<Cart />} />
+
+            <Route path="/adminHome" element={<AdminHome />} />
+            <Route path="/itemList" element={<ItemList />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

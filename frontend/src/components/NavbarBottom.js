@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom"; // Import Link component
-import { theme } from "../../assets/Colors"; //
+import { theme } from "../assets/Colors"; //
 
 const pages = [
   { label: "Home", path: "/" },

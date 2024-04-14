@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
-import { theme } from "../../assets/Colors";
+import { theme } from "../assets/Colors";
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 export const Footer = () => {

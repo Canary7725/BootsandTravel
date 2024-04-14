@@ -7,10 +7,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Typography from "@mui/material/Typography";
 
-import NavbarTop from "../components/Dashboard/NavbarTop";
-import NavbarBottom from "../components/Dashboard/NavbarBottom";
+import NavbarTop from "../components/NavbarTop";
+import NavbarBottom from "../components/NavbarBottom";
 import { theme } from "../assets/Colors";
-import Footer from "../components/Dashboard/Footer";
+import Footer from "../components/Footer";
 import MainButton from "../components/Button";
 import BreadCrumb from "../components/Breadcrumb";
 import { ProductsContext } from "../Context/productsContext";

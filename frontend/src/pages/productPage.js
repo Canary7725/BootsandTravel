@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { ProductsContext } from "../Context/productsContext";
-import NavbarTop from "../components/Dashboard/NavbarTop";
-import NavbarBottom from "../components/Dashboard/NavbarBottom";
+import NavbarTop from "../components/NavbarTop";
+import NavbarBottom from "../components/NavbarBottom";
 import { theme } from "../assets/Colors";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { Box } from "@mui/material";
 import Cards from "../components/Cards";
 import FaButton from "../components/FaButton";
-import Footer from "../components/Dashboard/Footer";
+import Footer from "../components/Footer";
 import { FaBold } from "react-icons/fa";
 
 function ProductList(props) {

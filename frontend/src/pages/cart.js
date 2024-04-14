@@ -3,13 +3,13 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import NavbarTop from "../components/Dashboard/NavbarTop";
-import NavbarBottom from "../components/Dashboard/NavbarBottom";
+import NavbarTop from "../components/NavbarTop";
+import NavbarBottom from "../components/NavbarBottom";
 import Typography from "@mui/material/Typography";
 import { useAuth } from "../Context/AuthContext";
 import MainButton from "../components/Button";
 import { theme } from "../assets/Colors";
-import Footer from "../components/Dashboard/Footer";
+import Footer from "../components/Footer";
 
 const Cart = () => {
   const { user } = useAuth();

@@ -1,10 +1,21 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { TextField, Button, Grid } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+
+import {
+  TextField,
+  Button,
+  Grid,
+  Typography,
+  Divider,
+  Box,
+} from "@mui/material";
 import axios from "axios";
 import * as Yup from "yup";
+import { useAuth } from "../../Context/AuthContext";
+import { theme } from "../../assets/Colors";
 
-function CreateProductForm() {
+function AddItems() {
   const initialValues = {
     name: "",
     description: "",
@@ -63,12 +74,37 @@ function CreateProductForm() {
     setSubmitting(false);
   };
 
+  const { user } = useAuth();
+  const userDetails = user || {};
+
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12}>
-        <h2>Create Product</h2>
-      </Grid>
-      <Grid item xs={12}>
+    <Grid
+      container
+      spacing={2}
+      sx={{
+        my: 3,
+        alignItems: "center",
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "100%",
+          mr: 5,
+          ml: 2,
+          pb: 2,
+          borderBottom: "1px solid",
+        }}
+      >
+        <Typography variant="h5">Create Products</Typography>
+        <Avatar
+          alt={`${userDetails.name}`}
+          src={`http://localhost:4000/images/user/${userDetails.profile_image}`}
+        />
+      </Box>
+
+      <Grid item xs={12} sx={{ mt: 7, mr: 5 }}>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -84,6 +120,19 @@ function CreateProductForm() {
                     label="Name"
                     variant="outlined"
                     fullWidth
+                    sx={{
+                      "& .MuiInputLabel-root": {
+                        color: theme.palette.secondary.main, // Change label color
+                      },
+                      "& .MuiOutlinedInput-root": {
+                        "& fieldset": {
+                          borderColor: theme.palette.secondary.main, // Change border color
+                        },
+                      },
+                      "& .MuiInputBase-input": {
+                        color: theme.palette.secondary.main,
+                      },
+                    }}
                   />
                   <ErrorMessage name="name" component="div" />
                 </Grid>
@@ -97,6 +146,19 @@ function CreateProductForm() {
                     multiline
                     rows={4}
                     fullWidth
+                    sx={{
+                      "& .MuiInputLabel-root": {
+                        color: theme.palette.secondary.main, // Change label color
+                      },
+                      "& .MuiOutlinedInput-root": {
+                        "& fieldset": {
+                          borderColor: theme.palette.secondary.main, // Change border color
+                        },
+                      },
+                      "& .MuiInputBase-input": {
+                        color: theme.palette.secondary.main,
+                      },
+                    }}
                   />
                   <ErrorMessage name="description" component="div" />
                 </Grid>
@@ -108,6 +170,19 @@ function CreateProductForm() {
                     label="Price"
                     variant="outlined"
                     fullWidth
+                    sx={{
+                      "& .MuiInputLabel-root": {
+                        color: theme.palette.secondary.main, // Change label color
+                      },
+                      "& .MuiOutlinedInput-root": {
+                        "& fieldset": {
+                          borderColor: theme.palette.secondary.main, // Change border color
+                        },
+                      },
+                      "& .MuiInputBase-input": {
+                        color: theme.palette.secondary.main,
+                      },
+                    }}
                   />
                   <ErrorMessage name="price" component="div" />
                 </Grid>
@@ -119,6 +194,19 @@ function CreateProductForm() {
                     label="Quantity Available"
                     variant="outlined"
                     fullWidth
+                    sx={{
+                      "& .MuiInputLabel-root": {
+                        color: theme.palette.secondary.main, // Change label color
+                      },
+                      "& .MuiOutlinedInput-root": {
+                        "& fieldset": {
+                          borderColor: theme.palette.secondary.main, // Change border color
+                        },
+                      },
+                      "& .MuiInputBase-input": {
+                        color: theme.palette.secondary.main,
+                      },
+                    }}
                   />
                   <ErrorMessage name="quantity_available" component="div" />
                 </Grid>
@@ -130,6 +218,19 @@ function CreateProductForm() {
                     label="Categories (comma-separated)"
                     variant="outlined"
                     fullWidth
+                    sx={{
+                      "& .MuiInputLabel-root": {
+                        color: theme.palette.secondary.main, // Change label color
+                      },
+                      "& .MuiOutlinedInput-root": {
+                        "& fieldset": {
+                          borderColor: theme.palette.secondary.main, // Change border color
+                        },
+                      },
+                      "& .MuiInputBase-input": {
+                        color: theme.palette.secondary.main,
+                      },
+                    }}
                   />
                   <ErrorMessage name="categories" component="div" />
                 </Grid>
@@ -149,8 +250,14 @@ function CreateProductForm() {
                   <Button
                     type="submit"
                     variant="contained"
-                    color="primary"
                     disabled={isSubmitting}
+                    sx={{
+                      color: theme.palette.primary.main,
+                      bgcolor: theme.palette.secondary.main,
+                      "&:hover": {
+                        bgcolor: theme.palette.secondary.main, // Maintain the same background color on hover
+                      },
+                    }}
                   >
                     Submit
                   </Button>
@@ -164,4 +271,4 @@ function CreateProductForm() {
   );
 }
 
-export default CreateProductForm;
+export default AddItems;

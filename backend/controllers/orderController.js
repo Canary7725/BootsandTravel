@@ -13,7 +13,6 @@ const createOrder = asyncHandler(async (req, res) => {
     return res.status(400).json({ success: false, error: "Cart is empty" });
   }
 
-  // Extract relevant information from cart items
   const items = cartItems.map((cartItem) => ({
     user_id: cartItem.user_id,
     product: cartItem.product,

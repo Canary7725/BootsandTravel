@@ -12,9 +12,9 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import MenuItem from "@mui/material/MenuItem";
 import { useCookies } from "react-cookie";
-import { theme } from "../../assets/Colors";
-import Logo from "../../images/Logo.png";
-import { useAuth } from "../../Context/AuthContext";
+import { theme } from "../assets/Colors";
+import Logo from "../images/Logo.png";
+import { useAuth } from "../Context/AuthContext";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Logout"];
