@@ -15,16 +15,38 @@ import {
 } from "@mui/material";
 import { useAuth } from "../../Context/AuthContext";
 import { ProductsContext } from "../../Context/productsContext";
-import { useContext, useState } from "react";
-import { useTheme } from "@mui/material/styles";
+import { useContext, useState, useEffect } from "react";
 import FaButton from "../FaButton";
 import MainButton from "../Button";
+import { theme } from "../../assets/Colors";
+import axios from "axios";
 
 const Items = () => {
-  const products = useContext(ProductsContext);
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(
+          "http://localhost:4000/api/order/getOrders"
+        );
+        if (response.data.success) {
+          setOrders(response.data.data);
+
+          const user = await axios.get(
+            `http://localhost:4000/api/user/getUserById/`
+          );
+        }
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
   const { user } = useAuth();
   const userDetails = user || {};
-  const theme = useTheme();
 
   // Pagination
   const [page, setPage] = useState(0);
@@ -35,7 +57,7 @@ const Items = () => {
   };
 
   const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, products.length - page * rowsPerPage);
+    rowsPerPage - Math.min(rowsPerPage, orders.length - page * rowsPerPage);
 
   return (
     <Grid
@@ -64,10 +86,7 @@ const Items = () => {
           src={`http://localhost:4000/images/user/${userDetails.profile_image}`}
         />
       </Box>
-      <TableContainer
-        component={Paper}
-        sx={{ mt: 6, mr: 5, bgcolor: theme.palette.primary.main }}
-      >
+      <TableContainer sx={{ mt: 6, mr: 5 }}>
         <Table>
           <TableHead>
             <TableRow>
@@ -75,67 +94,45 @@ const Items = () => {
                 #
               </TableCell>
               <TableCell style={{ color: theme.palette.secondary.main }}>
-                Name
+                User Name
               </TableCell>
               <TableCell style={{ color: theme.palette.secondary.main }}>
-                Price
+                Total Price
               </TableCell>
               <TableCell style={{ color: theme.palette.secondary.main }}>
-                Available Quantity
+                Address
               </TableCell>
               <TableCell style={{ color: theme.palette.secondary.main }}>
-                Action
+                Status
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {(rowsPerPage > 0
-              ? products.slice(
+              ? orders.slice(
                   page * rowsPerPage,
                   page * rowsPerPage + rowsPerPage
                 )
-              : products
-            ).map((product, index) => (
-              <TableRow key={index}>
+              : orders
+            ).map((order, index) => (
+              <TableRow key={order._id}>
                 <TableCell style={{ color: theme.palette.secondary.main }}>
-                  {index + 1 + page * rowsPerPage}
+                  {index + 1}
                 </TableCell>
                 <TableCell style={{ color: theme.palette.secondary.main }}>
-                  {product.name}
+                  {order.user_id}
                 </TableCell>
                 <TableCell style={{ color: theme.palette.secondary.main }}>
-                  {product.price}
+                  {order.total_price}
                 </TableCell>
                 <TableCell style={{ color: theme.palette.secondary.main }}>
-                  {product.quantity_available}
+                  {order.shipping_address}
                 </TableCell>
                 <TableCell style={{ color: theme.palette.secondary.main }}>
-                  <Button
-                    sx={{
-                      color: theme.palette.secondary.main,
-                      bgcolor: theme.palette.primary.main,
-                    }}
-                  >
-                    {" "}
-                    Update
-                  </Button>
-                  <Button
-                    sx={{
-                      color: theme.palette.secondary.main,
-                      bgcolor: theme.palette.primary.main,
-                      ml: 2,
-                    }}
-                  >
-                    Delete
-                  </Button>
+                  {order.status}
                 </TableCell>
               </TableRow>
             ))}
-            {emptyRows > 0 && (
-              <TableRow style={{ height: 53 * emptyRows }}>
-                <TableCell colSpan={4} />
-              </TableRow>
-            )}
           </TableBody>
         </Table>
       </TableContainer>
@@ -149,7 +146,7 @@ const Items = () => {
       >
         <TablePagination
           component="div" // Render TablePagination as a div
-          count={products.length}
+          count={orders.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={(event, newPage) => setPage(newPage)}

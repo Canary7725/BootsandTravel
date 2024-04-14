@@ -13,6 +13,7 @@ import FaButton from "./components/FaButton";
 import Test from "./pages/test";
 import AdminHome from "./pages/Admin/adminHome";
 import ItemList from "./pages/Admin/itemList";
+import ManageOrder from "./pages/Admin/manageOrder";
 
 export default function App() {
   const cookies = useCookies([]);
@@ -41,6 +42,7 @@ export default function App() {
 
             <Route path="/adminHome" element={<AdminHome />} />
             <Route path="/itemList" element={<ItemList />} />
+            <Route path="/orders" element={<ManageOrder />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

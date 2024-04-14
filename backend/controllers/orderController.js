@@ -3,14 +3,14 @@ const Order = require("../models/orderModel");
 const asyncHandler = require("express-async-handler");
 
 const createOrder = asyncHandler(async (req, res) => {
-  const { user_id, shipping_address } = req.body;
+  const { user_id, total_price, shipping_address } = req.body;
 
   // Retrieve cart items for the user
   const cartItems = await Cart.find({ user_id });
 
   // Check if the cart is empty
   if (cartItems.length === 0) {
-    return res.status(400).json({ success: false, error: "Cart is empty" });
+    return res.status(400).json({ success: false, message: "Cart is empty" });
   }
 
   const items = cartItems.map((cartItem) => ({
@@ -20,10 +20,17 @@ const createOrder = asyncHandler(async (req, res) => {
   }));
   try {
     // Create the order
-    const order = await Order.create({ user_id, items, shipping_address });
-    res.status(201).json({ success: true, data: order });
+    const order = await Order.create({
+      user_id,
+      total_price,
+      items,
+      shipping_address,
+    });
+    res
+      .status(201)
+      .json({ success: true, data: order, message: "Order Created" });
   } catch (error) {
-    res.status(400).json({ success: false, error: error.message });
+    res.status(400).json({ success: false, message: error.message });
   }
 });
 

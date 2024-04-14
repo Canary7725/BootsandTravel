@@ -1,8 +1,8 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
-import AddItems from "../../components/Admin/addItems";
 import Drawer from "../../components/Admin/Drawer";
 import { theme } from "../../assets/Colors";
-const AdminHome = () => {
+import Orders from "../../components/Admin/Orders";
+const ManageOrder = () => {
   return (
     <Grid
       container
@@ -18,10 +18,10 @@ const AdminHome = () => {
       </Grid>
       <Grid lg={9}>
         {" "}
-        <AddItems />
+        <Orders />
       </Grid>
     </Grid>
   );
 };
 
-export default AdminHome;
+export default ManageOrder;

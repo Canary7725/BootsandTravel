@@ -10,7 +10,10 @@ import { useAuth } from "../Context/AuthContext";
 import MainButton from "../components/Button";
 import { theme } from "../assets/Colors";
 import Footer from "../components/Footer";
-
+import { Link, TextField } from "@mui/material";
+import { toast } from "react-toastify";
+import Toast from "../components/Toast";
+import axios from "axios";
 const Cart = () => {
   const { user } = useAuth();
   const [cart, setCart] = useState([]);
@@ -48,6 +51,42 @@ const Cart = () => {
     totalPrice += item.product.price * item.quantity;
   }
 
+  const handleError = (err) => toast.error(err);
+  const handleSuccess = (msg) => toast.success(msg);
+
+  const [address, setAddress] = useState();
+  const handleCheckout = async () => {
+    try {
+      if (address != "") {
+        const { data } = await axios.post(
+          "http://localhost:4000/api/order/createOrder",
+          {
+            user_id,
+            total_price: totalPrice,
+            shipping_address: address,
+          },
+          { withCredentials: true }
+        );
+        const { success, message } = data;
+        if (success) {
+          handleSuccess(message);
+          cartItems.forEach((item) => {
+            axios.delete(
+              `http://localhost:4000/api/cart/removeItemFromCart/${item._id}`
+            );
+            window.location.reload();
+          });
+        } else {
+          handleError(message);
+        }
+      } else {
+        handleError("Quantity Must be greater than 0");
+      }
+    } catch (error) {
+      handleError(error.response.data.message);
+    }
+  };
+
   return (
     <Box sx={{ bgcolor: theme.palette.secondary.main, overflow: "hidden" }}>
       <NavbarTop />
@@ -57,7 +96,7 @@ const Cart = () => {
         <Grid item xs={12} md={8} lg={6}>
           <Typography variant="h4" sx={{ mx: 3, my: 3 }}>
             {" "}
-            My Cart{" "}
+            My Cart({cartItems.length})
           </Typography>
 
           {cartItems &&
@@ -118,12 +157,16 @@ const Cart = () => {
             {" "}
             Total: Rs {totalPrice + 80}
           </Typography>
+          <TextField onChange={(e) => setAddress(e.target.value)} />
           <Typography sx={{ mt: 10 }}>
-            <MainButton>Checkout</MainButton>
+            <form onClick={handleCheckout}>
+              <MainButton>Checkout</MainButton>
+            </form>
           </Typography>
         </Grid>
       </Grid>
       <Footer />
+      <Toast />
     </Box>
   );
 };

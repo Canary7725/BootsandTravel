@@ -21,6 +21,7 @@ export default function AppDrawer() {
         height: "100vh",
         bgcolor: theme.palette.secondary.main,
         color: theme.palette.primary.main,
+        position: "fixed",
       }}
       role="presentation"
     >
