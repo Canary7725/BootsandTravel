@@ -17,9 +17,7 @@ const Home = () => {
   const [cookies, removeCookie] = useCookies([]);
   const [name, setName] = useState("");
   const { user } = useAuth();
-
   useEffect(() => {
-    console.log(user);
     setName(user ? user.name : ""); // Check if user is not null before accessing name
   }, [user]);
 
@@ -29,7 +27,7 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col bg-secondary">
+    <div className="flex flex-col bg-secondary overflow-x-hidden">
       <NavbarTop />
       <NavbarBottom />
       <ImageSlider />

@@ -9,12 +9,6 @@ import { ToastContainer, toast } from "react-toastify";
 import Toast from "../components/Toast";
 import { useAuth } from "../Context/AuthContext";
 
-const colors = {
-  text: "#f2f3d9",
-  background: "#1e1e1e",
-  disabled: "#D9D9D9",
-};
-
 const Login = () => {
   const { login } = useAuth();
   const [email, setEmail] = useState("");
@@ -34,7 +28,6 @@ const Login = () => {
       const { success, message, user } = data;
       if (success) {
         login(user);
-        console.log(user);
         navigate("/");
       } else {
         handleError(message);

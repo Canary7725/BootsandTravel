@@ -15,9 +15,48 @@ import MainButton from "../components/Button";
 import BreadCrumb from "../components/Breadcrumb";
 import { ProductsContext } from "../Context/productsContext";
 import FaButton from "../components/FaButton";
+import { useAuth } from "../Context/AuthContext";
+import NumberInput from "../components/NumberInput";
+import { toast } from "react-toastify";
+import Toast from "../components/Toast";
 
 const ProductDetails = () => {
+  const { user } = useAuth();
   const { id } = useParams();
+  const [quantity, setQuantity] = useState(0);
+
+  const user_id = user ? user._id : null;
+  const product_id = useParams().id;
+
+  const handleError = (err) => toast.error(err);
+  const handleSuccess = (msg) => toast.success(msg);
+
+  const addToCart = async () => {
+    try {
+      if (quantity > 0) {
+        const { data } = await axios.post(
+          "http://localhost:4000/api/cart/addItemToCart",
+          {
+            user_id,
+            product_id,
+            quantity,
+          },
+          { withCredentials: true }
+        );
+        const { success, message } = data;
+        if (success) {
+          handleSuccess(message);
+        } else {
+          handleError(message);
+        }
+      } else {
+        handleError("Quantity Must be greater than 0");
+      }
+    } catch (error) {
+      handleError(error.response.data.message);
+    }
+  };
+
   const products = useContext(ProductsContext);
   const product = products.find(
     (product) => parseInt(product._id) === parseInt(id)
@@ -34,10 +73,19 @@ const ProductDetails = () => {
     slidesToScroll: 1,
   };
 
+  const handleIncrement = (newValue) => {
+    setQuantity(newValue);
+  };
+
+  const handleDecrement = (newValue) => {
+    setQuantity(newValue);
+  };
+
   return (
     <Box
       sx={{
         bgcolor: theme.palette.secondary.main,
+        overflowX: "hidden",
       }}
     >
       <NavbarTop />
@@ -95,10 +143,22 @@ const ProductDetails = () => {
       <Box sx={{ ml: "43.65%" }}>
         <Typography>In Stock: {product.quantity_available}</Typography>
         <Typography sx={{ typography: "h3" }}>Rs {product.price}</Typography>
-        <MainButton>Add to Cart</MainButton>
+        <NumberInput
+          value={quantity}
+          onIncrement={handleIncrement}
+          onDecrement={handleDecrement}
+          min={0}
+          max={100}
+          onChange={(e) => setQuantity(e.target.value)}
+        />
+        <form onClick={addToCart}>
+          {" "}
+          <MainButton>Add to Cart</MainButton>
+        </form>
       </Box>
       <FaButton />
       <Footer />
+      <Toast />
     </Box>
   );
 };

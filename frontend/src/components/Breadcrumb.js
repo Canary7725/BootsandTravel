@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const BreadCrumb = (props) => {
   const { product } = props;
-  console.log(product);
   return (
     <span className="flex items-center">
       <Link to={"/home"}>Home</Link>

@@ -11,7 +11,7 @@ const addItemToCart = asyncHandler(async (req, res) => {
   if (!productItem) {
     return res
       .status(400)
-      .json({ success: false, error: "Product Doesn't exists" });
+      .json({ success: false, message: "Product Doesn't exists" });
   }
 
   const cartItem = await Cart.create({
@@ -19,13 +19,13 @@ const addItemToCart = asyncHandler(async (req, res) => {
     product: productItem,
     quantity,
   });
-  res.status(201).json({ success: true, data: cartItem });
+  res.status(201).json({ success: true, message: "Added to Cart" });
 });
 
 const getCartItems = asyncHandler(async (req, res) => {
   const { user_id } = req.params;
   const cartItems = await Cart.find({ user_id });
-  res.status(200).json({ success: true, data: cartItems });
+  res.status(200).json(cartItems);
 });
 
 const updateCartItemQuantity = asyncHandler(async (req, res) => {

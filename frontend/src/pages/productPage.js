@@ -8,6 +8,8 @@ import Grid from "@mui/material/Grid";
 import { Box } from "@mui/material";
 import Cards from "../components/Cards";
 import FaButton from "../components/FaButton";
+import Footer from "../components/Dashboard/Footer";
+import { FaBold } from "react-icons/fa";
 
 function ProductList(props) {
   const { category } = props;
@@ -21,8 +23,32 @@ function ProductList(props) {
           product.categories.some((cat) => cat === category)
         );
 
+  if (filteredProducts.length == 0) {
+    return (
+      <div>
+        <div className="h-screen bg-secondary">
+          <NavbarTop />
+          <NavbarBottom />
+          <Typography
+            variant="h4"
+            component="h2"
+            sx={{ mt: 8, mx: 5, fontWeight: "bold" }}
+          >
+            No Entry Found
+          </Typography>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
-    <Box sx={{ backgroundColor: theme.palette.secondary.main }}>
+    <Box
+      sx={{
+        backgroundColor: theme.palette.secondary.main,
+        overflowX: "hidden",
+      }}
+    >
       <NavbarTop />
       <NavbarBottom />
 
@@ -43,6 +69,7 @@ function ProductList(props) {
         </Grid>
       </Box>
       <FaButton />
+      <Footer />
     </Box>
   );
 }

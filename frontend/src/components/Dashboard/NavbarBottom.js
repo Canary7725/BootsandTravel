@@ -32,8 +32,6 @@ function ResponsiveAppBar() {
           fontWeight: "bold",
         }}
       >
-        <Box sx={{ flexGrow: 1 }} />
-
         <Box sx={{ flexGrow: 0 }}>
           {pages.map((page) => (
             <Link
@@ -53,8 +51,6 @@ function ResponsiveAppBar() {
             </Link>
           ))}
         </Box>
-
-        <Box sx={{ flexGrow: 1 }} />
       </Toolbar>
     </AppBar>
   );

@@ -22,12 +22,13 @@ const settings = ["Profile", "Logout"];
 function ResponsiveAppBar() {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   const handleCloseUserMenu = (action) => () => {
     if (action === "logout") {
       removeCookie("token");
-      navigate("/login");
+      logout(user);
+      window.location.reload();
     } else if (action === "profile") {
       navigate("/profile");
     }
@@ -65,6 +66,7 @@ function ResponsiveAppBar() {
           color: theme.palette.primary.main,
           bgcolor: theme.palette.secondary.main,
           boxShadow: 0,
+          width: "100vw",
         }}
       >
         <Toolbar disableGutters>

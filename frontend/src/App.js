@@ -11,11 +11,12 @@ import Cart from "./pages/cart";
 import AddProduct from "./pages/addProduct";
 import ProductDetails from "./pages/productDetails";
 import FaButton from "./components/FaButton";
+import Test from "./pages/test";
 
 export default function App() {
   const cookies = useCookies([]);
   return (
-    <div className="application">
+    <div className="application p-0">
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Routes>
@@ -28,6 +29,7 @@ export default function App() {
             }
           /> */}
             <Route path="/" element={<Home />} />
+            <Route path="/test" element={<Test />} />
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/add" element={<AddProduct />} />
             <Route path="/all" element={<ProductList category="all" />} />

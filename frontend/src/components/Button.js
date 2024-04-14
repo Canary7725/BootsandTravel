@@ -8,7 +8,6 @@ export default function MainButton({ children }) {
   return (
     <Button
       variant="contained"
-      href="#s"
       sx={{
         mt: 2,
         bgcolor: theme.palette.primary.main,
