@@ -1,17 +1,14 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
-import AddItems from "../../components/Admin/addItems";
 import Drawer from "../../components/Admin/Drawer";
 import { theme } from "../../assets/Colors";
+import UpdateOrderStatus from "../../components/Admin/updateOrderForm";
 
-import { useAuth } from "../../Context/AuthContext";
-const AdminHome = () => {
-  const { logout } = useAuth();
-
+const UpdateStatus = () => {
   return (
     <Grid
       container
       sx={{
-        bgcolor: theme.palette.primary.main,
+        bgcolor: "white",
         color: theme.palette.secondary.main,
         height: "100vh",
       }}
@@ -21,11 +18,10 @@ const AdminHome = () => {
         <Drawer />
       </Grid>
       <Grid lg={9}>
-        {" "}
-        <AddItems />
+        <UpdateOrderStatus />{" "}
       </Grid>
     </Grid>
   );
 };
 
-export default AdminHome;
+export default UpdateStatus;

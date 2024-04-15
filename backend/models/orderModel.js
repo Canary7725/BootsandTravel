@@ -8,6 +8,10 @@ const orderSchema = mongoose.Schema(
       ref: "User",
       required: true,
     },
+    user_name: {
+      type: String,
+      required: true,
+    },
     items: [Cart.schema],
     shipping_address: {
       type: String,

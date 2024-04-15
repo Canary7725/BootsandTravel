@@ -28,7 +28,11 @@ const Login = () => {
       const { success, message, user } = data;
       if (success) {
         login(user);
-        navigate("/");
+        if (user.is_admin) {
+          navigate("/adminHome");
+        } else {
+          navigate("/");
+        }
       } else {
         handleError(message);
       }

@@ -1,5 +1,6 @@
 const Cart = require("../models/cartModel");
 const Order = require("../models/orderModel");
+const User = require("../models/userModel");
 const asyncHandler = require("express-async-handler");
 
 const createOrder = asyncHandler(async (req, res) => {
@@ -13,6 +14,9 @@ const createOrder = asyncHandler(async (req, res) => {
     return res.status(400).json({ success: false, message: "Cart is empty" });
   }
 
+  const user_name = await User.findById(user_id);
+  console.log(user_name);
+
   const items = cartItems.map((cartItem) => ({
     user_id: cartItem.user_id,
     product: cartItem.product,
@@ -25,6 +29,7 @@ const createOrder = asyncHandler(async (req, res) => {
       total_price,
       items,
       shipping_address,
+      user_name: user_name.name,
     });
     res
       .status(201)

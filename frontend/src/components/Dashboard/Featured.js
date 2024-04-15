@@ -8,9 +8,8 @@ import Typography from "@mui/material/Typography";
 import { theme } from "../../assets/Colors";
 import MainButton from "../Button";
 
-import image from "../../images/backup.png";
-
-const Featured = () => {
+// import image1 from "../../images/Featured2.png";
+const Featured = ({ image }) => {
   return (
     <div>
       <Card sx={{ width: "45vw", my: 4, mx: 4, pb: 2, borderRadius: 3 }}>

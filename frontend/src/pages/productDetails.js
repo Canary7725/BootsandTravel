@@ -58,9 +58,8 @@ const ProductDetails = () => {
   };
 
   const products = useContext(ProductsContext);
-  const product = products.find(
-    (product) => parseInt(product._id) === parseInt(id)
-  );
+  const product = products.find((product) => product._id === product_id);
+
   if (!product) {
     return <div>Loading...</div>;
   }

@@ -3,6 +3,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import backup from "../../images/backup.png";
+import banner_kids from "../../images/Products/banner_kids.png";
+import banner_men from "../../images/Products/banner_mens.png";
+import banner_women from "../../images/Products/banner_women.png";
 
 const ImageSlider = () => {
   const settings = {
@@ -19,17 +22,17 @@ const ImageSlider = () => {
       <Slider {...settings}>
         <div>
           <h3>
-            <img src={backup} alt="" />
+            <img className="" src={banner_women} alt="" />
           </h3>
         </div>
         <div>
           <h3>
-            <img src={backup} alt="" />
+            <img src={banner_men} alt="" />
           </h3>
         </div>
         <div>
           <h3>
-            <img src={backup} alt="" />
+            <img src={banner_kids} alt="" />
           </h3>
         </div>
       </Slider>

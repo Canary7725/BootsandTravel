@@ -14,8 +14,11 @@ import Test from "./pages/test";
 import AdminHome from "./pages/Admin/adminHome";
 import ItemList from "./pages/Admin/itemList";
 import ManageOrder from "./pages/Admin/manageOrder";
+import UpdateStatus from "./pages/Admin/updateStatus";
+import { useAuth } from "./Context/AuthContext";
 
 export default function App() {
+  const { user } = useAuth();
   const cookies = useCookies([]);
   return (
     <div className="application p-0">
@@ -43,6 +46,7 @@ export default function App() {
             <Route path="/adminHome" element={<AdminHome />} />
             <Route path="/itemList" element={<ItemList />} />
             <Route path="/orders" element={<ManageOrder />} />
+            <Route path="/updateOrder" element={<UpdateStatus />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

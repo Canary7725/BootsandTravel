@@ -68,9 +68,6 @@ const Cards = (props) => {
           <Typography variant="body2" color="text.secondary">
             Categories: {product.categories.join(", ")}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            ID: {product._id}
-          </Typography>
         </CardContent>
       </CardActionArea>
     </Card>

@@ -20,6 +20,8 @@ import FaButton from "../FaButton";
 import MainButton from "../Button";
 import { theme } from "../../assets/Colors";
 import axios from "axios";
+import { FaEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Items = () => {
   const [orders, setOrders] = useState([]);
@@ -105,6 +107,9 @@ const Items = () => {
               <TableCell style={{ color: theme.palette.secondary.main }}>
                 Status
               </TableCell>
+              <TableCell style={{ color: theme.palette.secondary.main }}>
+                Action
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -120,7 +125,7 @@ const Items = () => {
                   {index + 1}
                 </TableCell>
                 <TableCell style={{ color: theme.palette.secondary.main }}>
-                  {order.user_id}
+                  {order.user_name}
                 </TableCell>
                 <TableCell style={{ color: theme.palette.secondary.main }}>
                   {order.total_price}
@@ -130,6 +135,15 @@ const Items = () => {
                 </TableCell>
                 <TableCell style={{ color: theme.palette.secondary.main }}>
                   {order.status}
+                </TableCell>
+                <TableCell
+                  style={{
+                    color: theme.palette.secondary.main,
+                  }}
+                  component={Link}
+                  to={"/updateOrder"}
+                >
+                  <FaEdit />
                 </TableCell>
               </TableRow>
             ))}

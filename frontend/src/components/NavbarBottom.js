@@ -11,7 +11,7 @@ const pages = [
   { label: "Shop", path: "/all" },
   { label: "Men's Wear", path: "/men" },
   { label: "Women's Wear", path: "/women" },
-  { label: "MISC", path: "/misc" },
+  { label: "Miscellaneous", path: "/misc" },
 ];
 
 function ResponsiveAppBar() {

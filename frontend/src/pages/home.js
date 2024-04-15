@@ -12,6 +12,9 @@ import { useAuth } from "../Context/AuthContext";
 import { Button } from "@mui/material";
 import FaButton from "../components/FaButton";
 
+import image1 from "../images/Featured1.png";
+import image2 from "../images/Featured2.png";
+
 const Home = () => {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
@@ -39,8 +42,8 @@ const Home = () => {
         Featured
       </Typography>
       <div className="flex flex-row justify-between">
-        <Featured />
-        <Featured />
+        <Featured image={image1} />
+        <Featured image={image2} />
       </div>
       <BrandSlider />
       <Footer />

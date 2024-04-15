@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
@@ -11,8 +11,16 @@ import MailIcon from "@mui/icons-material/Mail";
 import Logo from "../../images/Logo.png";
 import { Link } from "react-router-dom";
 import { theme } from "../../assets/Colors";
-
+import { useAuth } from "../../Context/AuthContext";
 export default function AppDrawer() {
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
+
+  const handleLogout = () => {
+    const users = user || {};
+    logout(users);
+    navigate("/");
+  };
   const DrawerList = (
     <Box
       sx={{
@@ -51,7 +59,7 @@ export default function AppDrawer() {
       <Divider />
       <List>
         <ListItem disablePadding>
-          <ListItemButton component={Link} to="/logout">
+          <ListItemButton onClick={handleLogout}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
