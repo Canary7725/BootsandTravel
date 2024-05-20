@@ -4,10 +4,7 @@ const connectDB = require("./config/dbConnection");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const path = require("path");
-const stripe = require("stripe")(
-  process.env.STRIPE_SECRET_KEY ||
-    "sk_test_51PIYzkErfoli3qMNSFKL2oJh4rtA9iCQmxLcm5mEYl8cOeXahHucL12NZxpwNG71rUhsqDwH43xU4WeR4ha15J0p00KxyEivZM"
-);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const { v4: uuidv4 } = require("uuid");
 
 connectDB();
