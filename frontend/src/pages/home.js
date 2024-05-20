@@ -46,8 +46,8 @@ const Home = () => {
         <Featured image={image2} />
       </div>
       <BrandSlider />
-      <Footer />
       <FaButton />
+      <Footer />
     </div>
   );
 };

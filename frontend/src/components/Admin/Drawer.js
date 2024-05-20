@@ -12,14 +12,19 @@ import Logo from "../../images/Logo.png";
 import { Link } from "react-router-dom";
 import { theme } from "../../assets/Colors";
 import { useAuth } from "../../Context/AuthContext";
+import { useCookies } from "react-cookie";
+
 export default function AppDrawer() {
+  const [cookies, removeCookie] = useCookies([]);
+
   const navigate = useNavigate();
   const { user, logout } = useAuth();
 
   const handleLogout = () => {
     const users = user || {};
     logout(users);
-    navigate("/");
+    removeCookie("token");
+    navigate("/login");
   };
   const DrawerList = (
     <Box

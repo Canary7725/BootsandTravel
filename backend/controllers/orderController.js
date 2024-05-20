@@ -52,16 +52,24 @@ const getOrderById = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, data: order });
 });
 
-const updateOrder = asyncHandler(async (req, res) => {
-  const order = await Order.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
-  });
-  if (!order) {
-    return res.status(404).json({ success: false, error: "Order not found" });
+const updateOrder = async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  try {
+    const order = await Order.findByIdAndUpdate(id, { status }, { new: true });
+    if (!order) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Order not found" });
+    }
+    res.json({ success: true, data: order, message: "Updated" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ success: false, message: "Error updating order status" });
   }
-  res.status(200).json({ success: true, data: order });
-});
+};
 
 const deleteOrder = asyncHandler(async (req, res) => {
   const order = await Order.findByIdAndDelete(req.params.id);

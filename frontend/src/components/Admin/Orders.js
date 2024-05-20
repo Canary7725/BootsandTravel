@@ -52,7 +52,7 @@ const Items = () => {
 
   // Pagination
   const [page, setPage] = useState(0);
-  const rowsPerPage = 7; // Fix rows per page to 10
+  const rowsPerPage = 7; // Fix rows per page to 7
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -67,7 +67,6 @@ const Items = () => {
       spacing={2}
       sx={{
         my: 3,
-        alignItems: "center",
       }}
     >
       <Box
@@ -76,7 +75,6 @@ const Items = () => {
           justifyContent: "space-between",
           width: "100%",
           mr: 5,
-          ml: 2,
           pb: 2,
           borderBottom: "1px solid",
           color: theme.palette.secondary.main, // Set text color to secondary
@@ -140,10 +138,10 @@ const Items = () => {
                   style={{
                     color: theme.palette.secondary.main,
                   }}
-                  component={Link}
-                  to={"/updateOrder"}
                 >
-                  <FaEdit />
+                  <Link to={`/updateOrder/${order._id}`}>
+                    <FaEdit />
+                  </Link>
                 </TableCell>
               </TableRow>
             ))}

@@ -6,6 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
+import { theme } from "../assets/Colors";
 
 const Cards = (props) => {
   const { product } = props;
@@ -29,9 +30,13 @@ const Cards = (props) => {
             sx={{ height: 140 }}
           />
         )}
-        <CardContent sx={{ height: "100%" }}>
-          {/* Link to product details page */}
-
+        <CardContent
+          sx={{
+            height: "100%",
+            bgcolor: theme.palette.primary.main,
+            color: theme.palette.secondary.main,
+          }}
+        >
           <Link
             to={`/product/${product._id}`}
             style={{ textDecoration: "none" }}
@@ -54,18 +59,28 @@ const Cards = (props) => {
               display: "-webkit-box",
               overflow: "hidden",
               WebkitBoxOrient: "vertical",
-              WebkitLineClamp: 2, // Display only 2 lines
+              WebkitLineClamp: 2,
+              color: theme.palette.secondary.main,
             }}
           >
             {product.description}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            sx={{ color: theme.palette.secondary.main }}
+          >
             Price: ${product.price}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            sx={{ color: theme.palette.secondary.main }}
+          >
             Quantity Available: {product.quantity_available}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            sx={{ color: theme.palette.secondary.main }}
+          >
             Categories: {product.categories.join(", ")}
           </Typography>
         </CardContent>

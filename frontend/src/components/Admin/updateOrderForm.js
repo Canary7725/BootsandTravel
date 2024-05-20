@@ -1,16 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import {
   FormControl,
-  InputLabel,
   Select,
   MenuItem,
   Button,
+  CircularProgress,
 } from "@mui/material";
 import axios from "axios";
 import { theme } from "../../assets/Colors";
 
-const UpdateOrderStatus = ({ orderId }) => {
+const UpdateOrderStatus = () => {
+  const orderId = useParams();
   const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    console.log("Received orderId:", orderId);
+    const fetchOrderStatus = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:4000/api/order/getOrderById/${orderId.id}`
+        );
+        setStatus(response.data.data.status);
+        console.log(response.data.data.status);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching order status:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchOrderStatus();
+  }, [orderId]);
 
   const handleChange = (event) => {
     setStatus(event.target.value);
@@ -18,14 +40,21 @@ const UpdateOrderStatus = ({ orderId }) => {
 
   const handleUpdateStatus = async () => {
     try {
-      await axios.put(`/api/orders/${orderId}`, { status });
-      // Optionally, you can handle success or show a message here
+      await axios.put(
+        `http://localhost:4000/api/order/updateOrder/${orderId.id}`,
+        {
+          status,
+        }
+      );
       console.log("Status updated successfully");
     } catch (error) {
-      // Handle error
       console.error("Error updating status:", error);
     }
   };
+
+  if (loading) {
+    return <CircularProgress />;
+  }
 
   return (
     <div>

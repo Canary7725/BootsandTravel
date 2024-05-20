@@ -91,15 +91,15 @@ const Login = () => {
           <Toast />
           <div className="w-full flex items-center justify-center relative py-2">
             <div className="w-full h-[1px] bg-[#f2f3d9]"></div>
-            <p className="absolute tex-lg px-2 text-[#f2f3d9] bg-[#1e1e1e]">
+            {/* <p className="absolute tex-lg px-2 text-[#f2f3d9] bg-[#1e1e1e]">
               Or
-            </p>
+            </p> */}
           </div>
 
-          <div className="w-full my-2 font-semibold bg-[#1e1e1e] text-[#f2f3d9] border border-[#f2f3d9] rounded-md p-3 text-center flex items-center justify-center">
+          {/* <div className="w-full my-2 font-semibold bg-[#1e1e1e] text-[#f2f3d9] border border-[#f2f3d9] rounded-md p-3 text-center flex items-center justify-center">
             <img src={google_icon} className="h-6 mr-2" />
             Sign In With Google
-          </div>
+          </div> */}
         </div>
 
         <div className="w-full flex items-center justify-center">

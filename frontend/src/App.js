@@ -19,7 +19,8 @@ import { useAuth } from "./Context/AuthContext";
 
 export default function App() {
   const { user } = useAuth();
-  const cookies = useCookies([]);
+
+  const { cookies } = useCookies([]);
   return (
     <div className="application p-0">
       <ThemeProvider theme={theme}>
@@ -46,7 +47,7 @@ export default function App() {
             <Route path="/adminHome" element={<AdminHome />} />
             <Route path="/itemList" element={<ItemList />} />
             <Route path="/orders" element={<ManageOrder />} />
-            <Route path="/updateOrder" element={<UpdateStatus />} />
+            <Route path="/updateOrder/:id" element={<UpdateStatus />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

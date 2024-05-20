@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const fabStyle = {
   position: "fixed",
-  bottom: 20,
+  bottom: 40,
   right: 20,
 };
 
@@ -15,7 +15,7 @@ export default function FaButton() {
     <Box sx={{ "& > :not(style)": { m: 1 } }}>
       <Link to={"/cart"}>
         {" "}
-        <Fab color="secondary" aria-label="add" style={fabStyle}>
+        <Fab color="primary" aria-label="add" style={fabStyle}>
           <ShoppingCartIcon />
         </Fab>
       </Link>
