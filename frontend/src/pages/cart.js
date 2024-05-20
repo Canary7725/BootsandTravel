@@ -182,7 +182,7 @@ const Cart = () => {
           />
           <Typography sx={{ mt: 10 }}>
             <StripeCheckout
-              stripeKey="pk_test_51PIYzkErfoli3qMNbVYjVKWekTE82d65CZbNZvOAQzZQTlkkkun2zXTNqumehsmFxLMk7EQZT6YG0BnkxLzTFCR700vaVRPIS7"
+              stripeKey={process.env.REACT_APP_KEY}
               token={makePayment}
               name="BootsAndTravel"
               amount={(totalPrice + 80) * 100} // Stripe expects amount in cents
