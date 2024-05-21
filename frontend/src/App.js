@@ -15,6 +15,7 @@ import AdminHome from "./pages/Admin/adminHome";
 import ItemList from "./pages/Admin/itemList";
 import ManageOrder from "./pages/Admin/manageOrder";
 import UpdateStatus from "./pages/Admin/updateStatus";
+import RevenuePage from "./pages/Admin/Prediction";
 import { useAuth } from "./Context/AuthContext";
 
 export default function App() {
@@ -35,7 +36,6 @@ export default function App() {
             }
           /> */}
             <Route path="/" element={<Home />} />
-            <Route path="/test" element={<Test />} />
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/all" element={<ProductList category="all" />} />
             <Route path="/men" element={<ProductList category="men" />} />
@@ -48,6 +48,7 @@ export default function App() {
             <Route path="/itemList" element={<ItemList />} />
             <Route path="/orders" element={<ManageOrder />} />
             <Route path="/updateOrder/:id" element={<UpdateStatus />} />
+            <Route path="/revenue" element={<RevenuePage />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

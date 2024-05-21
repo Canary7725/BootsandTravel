@@ -30,7 +30,6 @@ export default function AppDrawer() {
     <Box
       sx={{
         width: 250,
-        boxShadow: 4,
         height: "100vh",
         bgcolor: theme.palette.secondary.main,
         color: theme.palette.primary.main,
@@ -48,8 +47,7 @@ export default function AppDrawer() {
           { text: "Add Item", link: "/adminHome" },
           { text: "Item List", link: "/itemList" },
           { text: "Manage Orders", link: "/orders" },
-          { text: "Add Admin", link: "/addAdmin" },
-          { text: "Manage Users", link: "/manageUsers" },
+          { text: "View Revenue", link: "/revenue" },
         ].map((item, index) => (
           <ListItem key={item.text} disablePadding>
             <ListItemButton component={Link} to={item.link}>

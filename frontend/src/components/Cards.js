@@ -7,7 +7,6 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import { theme } from "../assets/Colors";
-
 const Cards = (props) => {
   const { product } = props;
   return (

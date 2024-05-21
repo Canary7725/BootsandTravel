@@ -1,6 +1,12 @@
 const Cart = require("../models/cartModel");
 const Order = require("../models/orderModel");
 const User = require("../models/userModel");
+const {
+  calculateMonthlyRevenue,
+  calculateYearlyRevenue,
+  predictFutureRevenue,
+} = require("../services/revenueServices");
+
 const asyncHandler = require("express-async-handler");
 
 const createOrder = asyncHandler(async (req, res) => {
@@ -79,10 +85,40 @@ const deleteOrder = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, data: {} });
 });
 
+const getMonthlyRevenue = async (req, res) => {
+  try {
+    const revenue = await calculateMonthlyRevenue();
+    res.json(revenue);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const getYearlyRevenue = async (req, res) => {
+  try {
+    const revenue = await calculateYearlyRevenue();
+    res.json(revenue);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const getFutureRevenue = async (req, res) => {
+  try {
+    const revenue = await predictFutureRevenue();
+    res.json(revenue);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   createOrder,
   getOrders,
   getOrderById,
   updateOrder,
   deleteOrder,
+  getMonthlyRevenue,
+  getYearlyRevenue,
+  getFutureRevenue,
 };
